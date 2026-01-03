@@ -1,0 +1,392 @@
+import React, { useState, useEffect } from 'react';
+import { Shield, Terminal, Code, Briefcase, GraduationCap, User, Mail, Linkedin, Award, Github, ChevronRight, Lock, Cpu, Network } from 'lucide-react';
+
+const Portfolio = () => {
+  const [activeSection, setActiveSection] = useState('home');
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offsetTop = element.offsetTop - 80; // Offset for fixed navbar
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+      setActiveSection(sectionId);
+    }
+  };
+
+  const projects = [
+    {
+      title: "Binary Exploitation Framework",
+      category: "Offensive Security",
+      description: "Developed custom exploitation tools for CTF competitions, focusing on stack and heap vulnerabilities in compiled binaries.",
+      tech: ["Python", "C++", "GDB", "Pwntools"],
+      gradient: "from-red-900 via-burgundy-900 to-black"
+    },
+    {
+      title: "Web Application Penetration Testing Suite",
+      category: "Red Team Tools",
+      description: "Automated reconnaissance and vulnerability assessment toolkit for web applications with focus on OWASP Top 10.",
+      tech: ["Python", "Flask", "SQL Injection", "XSS"],
+      gradient: "from-burgundy-800 via-red-800 to-black"
+    },
+    {
+      title: "Cryptographic Challenge Solver",
+      category: "Cryptography",
+      description: "Built automated solvers for common cryptographic challenges including RSA, AES, and classical ciphers.",
+      tech: ["Python", "PyCrypto", "Mathematics"],
+      gradient: "from-black via-burgundy-900 to-red-900"
+    }
+  ];
+
+  const experiences = [
+    {
+      title: "Intern Analyst",
+      company: "Driving Forward (Deloitte)",
+      period: "Dec 2025 – Present",
+      description: "Develop business cases through market analysis and competitive research. Collaborate with senior managers on strategic recommendations.",
+      icon: Briefcase
+    },
+    {
+      title: "IT Intern",
+      company: "McLean County Regional Planning",
+      period: "Aug 2025 – Present",
+      description: "Analyze transportation data, develop automated pipelines, and support GIS database management for regional infrastructure.",
+      icon: Cpu
+    },
+    {
+      title: "GIS Analyst & Technical Assistant",
+      company: "Illinois Wesleyan University",
+      period: "May 2025 – Aug 2025",
+      description: "Architected geodatabases for 8 campus buildings, improving data accuracy by 40%. Created automated validation scripts.",
+      icon: Network
+    }
+  ];
+
+  const skills = {
+    "Offensive Security": ["Binary Exploitation", "Web Exploitation", "Cryptography", "Reverse Engineering", "CTF Competitions"],
+    "Languages": ["Python", "C++", "Rust", "OCaml", "SQL"],
+    "Tools & Frameworks": ["Flask", "Git", "Linux", "RESTful APIs", "ArcGIS Pro"],
+    "Specializations": ["Red Team Operations", "Vulnerability Research", "Exploit Development"]
+  };
+
+  return (
+    <div className="bg-black text-gray-100 min-h-screen font-mono">
+      {/* Navigation */}
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-black/95 backdrop-blur-sm border-b border-red-900/30' : 'bg-transparent'}`}>
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <div className="w-10 h-10 bg-gradient-to-br from-red-900 to-burgundy-900 flex items-center justify-center font-bold text-xl border border-red-800">
+                HR
+              </div>
+              <span className="text-xl font-bold bg-gradient-to-r from-red-500 to-burgundy-500 bg-clip-text text-transparent">
+                HIRAT RAHMAN RAHI
+              </span>
+            </div>
+            <div className="flex items-center space-x-8">
+              {[
+                { label: 'HOME', id: 'home' },
+                { label: 'ABOUT', id: 'about' },
+                { label: 'PROJECTS', id: 'projects' },
+                { label: 'CONTACT', id: 'contact' }
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`text-sm transition-colors hover:text-red-500 ${activeSection === item.id ? 'text-red-500' : 'text-gray-400'}`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-burgundy-950 to-black opacity-50"></div>
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute text-red-900/10 font-mono text-xs"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animation: `float ${5 + Math.random() * 10}s infinite`
+              }}
+            >
+              {['0x', '0xFF', '0x00', '#!/bin/', 'root@', 'exploit', 'pwn'][Math.floor(Math.random() * 7)]}
+            </div>
+          ))}
+        </div>
+
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="flex items-center space-x-2 mb-4">
+                <Terminal className="text-red-500 w-6 h-6" />
+                <span className="text-red-500 text-sm font-bold tracking-wider">OFFENSIVE SECURITY ENGINEER</span>
+              </div>
+              <h1 className="text-6xl font-bold mb-6 leading-tight">
+                <span className="bg-gradient-to-r from-red-500 via-burgundy-500 to-red-600 bg-clip-text text-transparent">
+                  RED TEAM
+                </span>
+                <br />
+                <span className="text-white">OPERATOR</span>
+              </h1>
+              <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+                Computer Science & Neuroscience student at Illinois Wesleyan University. Specializing in binary exploitation,
+                reverse engineering, and offensive security operations. Active CTF competitor with passion for finding and exploiting vulnerabilities.
+              </p>
+              <div className="flex space-x-4">
+                <button
+                  onClick={() => scrollToSection('contact')}
+                  className="px-6 py-3 bg-gradient-to-r from-red-900 to-burgundy-900 hover:from-red-800 hover:to-burgundy-800 transition-all border border-red-800 flex items-center space-x-2 group"
+                >
+                  <span>GET IN TOUCH</span>
+                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+                <a href="mailto:hrahi@iwu.edu" className="px-6 py-3 border border-red-900 hover:border-red-700 hover:bg-red-950/30 transition-all">
+                  VIEW RESUME
+                </a>
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="relative z-10 bg-gradient-to-br from-burgundy-900/30 to-black border border-red-900/50 p-8 backdrop-blur">
+                <Shield className="text-red-500 w-16 h-16 mb-4" />
+                <h3 className="text-2xl font-bold mb-4 text-red-400">Security Expertise</h3>
+                <ul className="space-y-3">
+                  {['Binary Exploitation', 'Web Application Security', 'Cryptography & Crypto-analysis', 'Reverse Engineering', 'CTF Competitions'].map((item, i) => (
+                    <li key={i} className="flex items-center space-x-3 text-gray-300">
+                      <div className="w-2 h-2 bg-red-500 rotate-45"></div>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="absolute -bottom-4 -right-4 w-full h-full border border-red-900/30"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="py-24 bg-gradient-to-b from-black to-burgundy-950/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center space-x-3 mb-12">
+            <User className="text-red-500 w-8 h-8" />
+            <h2 className="text-4xl font-bold text-white">ABOUT</h2>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="space-y-6">
+              <p className="text-gray-300 leading-relaxed">
+                I'm a Computer Science and Neuroscience double major at Illinois Wesleyan University with a deep passion
+                for offensive security. Currently pursuing CompTIA Security+ certification while actively competing in CTF competitions.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                My approach combines technical expertise with strategic thinking, whether I'm exploiting binary vulnerabilities,
+                analyzing complex systems, or developing automated security tools. I thrive in environments that challenge conventional
+                security boundaries.
+              </p>
+              <div className="grid grid-cols-2 gap-4 pt-4">
+                <div className="border border-red-900/50 p-4 bg-burgundy-950/20">
+                  <div className="text-3xl font-bold text-red-500 mb-2">3.40</div>
+                  <div className="text-sm text-gray-400">GPA / 4.0</div>
+                </div>
+                <div className="border border-red-900/50 p-4 bg-burgundy-950/20">
+                  <div className="text-3xl font-bold text-red-500 mb-2">4+</div>
+                  <div className="text-sm text-gray-400">Languages Fluent</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div className="border border-red-900/50 p-6 bg-gradient-to-br from-burgundy-950/30 to-black">
+                <GraduationCap className="text-red-500 w-8 h-8 mb-4" />
+                <h3 className="text-xl font-bold mb-3 text-red-400">Education</h3>
+                <div className="text-gray-300">
+                  <p className="font-semibold">Illinois Wesleyan University</p>
+                  <p className="text-sm text-gray-400">B.S. Computer Science & Neuroscience</p>
+                  <p className="text-sm text-gray-400">Expected May 2027</p>
+                </div>
+                <div className="mt-4 pt-4 border-t border-red-900/30">
+                  <p className="text-sm text-gray-400 mb-2">Relevant Coursework:</p>
+                  <div className="flex flex-wrap gap-2">
+                    {['Data Structures', 'Software Development', 'Discrete Math', 'Logic & Recursion'].map((course, i) => (
+                      <span key={i} className="text-xs px-3 py-1 bg-red-950/50 border border-red-900/50 text-red-400">
+                        {course}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section className="py-24 bg-black">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center space-x-3 mb-12">
+            <Lock className="text-red-500 w-8 h-8" />
+            <h2 className="text-4xl font-bold text-white">SKILLS & EXPERTISE</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {Object.entries(skills).map(([category, items], idx) => (
+              <div key={idx} className="border border-red-900/50 p-6 bg-gradient-to-br from-burgundy-950/20 to-black hover:border-red-700/70 transition-all group">
+                <h3 className="text-xl font-bold mb-4 text-red-400 group-hover:text-red-300 transition-colors">{category}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {items.map((skill, i) => (
+                    <span key={i} className="px-3 py-1 bg-red-950/30 border border-red-900/50 text-sm text-gray-300 hover:bg-red-900/30 hover:border-red-700 transition-all cursor-default">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section className="py-24 bg-gradient-to-b from-black to-burgundy-950/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center space-x-3 mb-12">
+            <Briefcase className="text-red-500 w-8 h-8" />
+            <h2 className="text-4xl font-bold text-white">EXPERIENCE</h2>
+          </div>
+
+          <div className="space-y-6">
+            {experiences.map((exp, idx) => {
+              const Icon = exp.icon;
+              return (
+                <div key={idx} className="border border-red-900/50 p-6 bg-gradient-to-r from-burgundy-950/20 to-black hover:border-red-700/70 transition-all group">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-red-900 to-burgundy-900 flex items-center justify-center border border-red-800 group-hover:border-red-600 transition-all">
+                        <Icon className="w-6 h-6 text-red-300" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-white group-hover:text-red-400 transition-colors">{exp.title}</h3>
+                        <p className="text-red-400">{exp.company}</p>
+                      </div>
+                    </div>
+                    <span className="text-sm text-gray-400 border border-red-900/50 px-3 py-1">{exp.period}</span>
+                  </div>
+                  <p className="text-gray-300 leading-relaxed ml-16">{exp.description}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section id="projects" className="py-24 bg-black">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center space-x-3 mb-12">
+            <Code className="text-red-500 w-8 h-8" />
+            <h2 className="text-4xl font-bold text-white">PROJECTS</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project, idx) => (
+              <div key={idx} className="group cursor-pointer">
+                <div className={`h-48 bg-gradient-to-br ${project.gradient} mb-4 relative overflow-hidden border border-red-900/50`}>
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Terminal className="w-16 h-16 text-red-400/50 group-hover:text-red-400 transition-all group-hover:scale-110" />
+                  </div>
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 bg-black/60 border border-red-900/50 text-xs text-red-400 backdrop-blur">
+                      {project.category}
+                    </span>
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold mb-2 text-white group-hover:text-red-400 transition-colors">{project.title}</h3>
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((tech, i) => (
+                    <span key={i} className="text-xs px-2 py-1 bg-red-950/30 border border-red-900/50 text-red-400">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-24 bg-gradient-to-b from-black to-burgundy-950/20">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="flex items-center space-x-3 mb-12">
+            <Mail className="text-red-500 w-8 h-8" />
+            <h2 className="text-4xl font-bold text-white">CONTACT</h2>
+          </div>
+
+          <div className="border border-red-900/50 p-8 bg-gradient-to-br from-burgundy-950/30 to-black">
+            <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+              Interested in collaboration, have a security project, or just want to connect?
+              Feel free to reach out through any of the channels below.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+              <a href="mailto:hrahi@iwu.edu" className="flex flex-col items-center p-8 border border-red-900/50 hover:border-red-700 hover:bg-red-950/20 transition-all group">
+                <Mail className="w-10 h-10 text-red-500 mb-4 group-hover:scale-110 transition-transform" />
+                <span className="text-sm text-gray-400 uppercase tracking-wider mb-2">Email</span>
+                <span className="text-white text-lg text-center break-all">hrahi@iwu.edu</span>
+              </a>
+
+              <a href="https://linkedin.com/in/hiratrahman" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center p-8 border border-red-900/50 hover:border-red-700 hover:bg-red-950/20 transition-all group">
+                <Linkedin className="w-10 h-10 text-red-500 mb-4 group-hover:scale-110 transition-transform" />
+                <span className="text-sm text-gray-400 uppercase tracking-wider mb-2">LinkedIn</span>
+                <span className="text-white text-lg">hiratrahman</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-red-900/30 py-8 bg-black">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center justify-between">
+            <p className="text-gray-500 text-sm">© 2026 Hirat Rahman Rahi. All rights reserved.</p>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+              <span className="text-gray-500 text-sm">Available for opportunities</span>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-20px); }
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default Portfolio;

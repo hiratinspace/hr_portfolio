@@ -1,0 +1,112 @@
+# 🔐 Personal Portfolio - Hirat Rahman Rahi
+
+Hey! This is my personal portfolio website showcasing my work in cybersecurity, software development, and my journey as a Computer Science & Neuroscience student at Illinois Wesleyan University.
+
+🌐 **Live Site:** [hiratinspace.github.io/portfolio](https://hiratinspace.github.io/portfolio)
+
+## 📸 Preview
+
+A modern, dark-themed portfolio with a burgundy and red color scheme designed to reflect my focus on offensive security and red team operations.
+
+## 🎯 What's Inside
+
+- **Hero Section** - Introduction with my focus on offensive security
+- **About** - My background, education, and what drives me
+- **Skills** - Technical skills including binary exploitation, web security, and more
+- **Experience** - My internships and work experience
+- **Projects** - Security projects I've worked on (CTF challenges, exploitation frameworks, etc.)
+- **Contact** - Ways to reach me
+
+## 🛠️ Built With
+
+- **React** - Frontend framework
+- **Tailwind CSS** - For styling (with custom burgundy theme)
+- **Lucide React** - Icons
+- **GitHub Pages** - Hosting
+
+## 🚀 Running Locally
+
+Want to run this on your machine? Here's how:
+
+```bash
+# Clone the repo
+git clone https://github.com/hiratinspace/portfolio.git
+cd portfolio
+
+# Install dependencies
+npm install
+
+# Start the dev server
+npm start
+```
+
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+## 📦 Deployment
+
+The site is automatically deployed to GitHub Pages. To deploy updates:
+
+```bash
+npm run build
+npm run deploy
+```
+
+## 🎨 Design Choices
+
+- **Burgundy/Red Theme** - Represents power, sophistication, and the "red team" focus in cybersecurity
+- **Monospace Font** - Gives that terminal/hacker aesthetic
+- **Dark Mode** - Easier on the eyes and fits the security theme
+- **Animated Elements** - Floating hex codes and smooth transitions for a modern feel
+
+## 📁 Project Structure
+
+```
+portfolio/
+├── public/
+│   ├── index.html
+│   └── favicon.svg
+├── src/
+│   ├── App.js          # Main portfolio component
+│   ├── index.js        # Entry point
+│   └── index.css       # Tailwind config
+├── package.json
+└── tailwind.config.js
+```
+
+## 🔧 Customization
+
+Feel free to fork this and make it your own! Key things to change:
+
+1. **Personal Info** - Update name, email, links in `App.js`
+2. **Colors** - Modify the burgundy theme in `tailwind.config.js`
+3. **Projects** - Add your own projects in the projects array
+4. **Experience** - Update work experience section
+5. **Skills** - Customize your skill set
+
+## 📝 TODO
+
+- [ ] Add a blog section for writeups
+- [ ] Create detailed project pages
+- [ ] Add dark/light mode toggle (though dark is life)
+- [ ] Include CTF stats/achievements
+- [ ] Add resume download functionality
+
+## 🤝 Contributing
+
+This is a personal portfolio, but if you find bugs or have suggestions, feel free to open an issue!
+
+## 📧 Contact
+
+- **Email:** hrahi@iwu.edu
+- **LinkedIn:** [linkedin.com/in/hiratrahman](https://linkedin.com/in/hiratrahman)
+- **GitHub:** [github.com/hiratinspace](https://github.com/hiratinspace)
+
+## 📄 License
+
+All rights reserved. This is my personal portfolio - feel free to use it as inspiration for your own, but please don't copy it directly. Make it your own!
+
+---
+
+Made with ☕ and late nights by a college student who probably should be studying for exams 😅
+
+**Fun fact:** The floating hex codes in the background are randomly generated on each page load!
